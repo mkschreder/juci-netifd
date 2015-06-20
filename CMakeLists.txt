@@ -5,7 +5,7 @@ ADD_DEFINITIONS(-Os -Wall -Werror --std=gnu99 -Wmissing-declarations)
 
 SET(CMAKE_SHARED_LIBRARY_LINK_C_FLAGS "")
 
-INCLUDE_DIRECTORIES(../ ../libubox ../ubus ../uci ../json-c-0.11 ../libnl/include)
+INCLUDE_DIRECTORIES(../ ../libubox ../ubus ../uci ../json-c ../libnl/include)
 LINK_DIRECTORIES(../lib)
 
 IF(APPLE)

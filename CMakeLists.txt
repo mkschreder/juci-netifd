@@ -5,6 +5,9 @@ ADD_DEFINITIONS(-Os -Wall -Werror --std=gnu99 -Wmissing-declarations)
 
 SET(CMAKE_SHARED_LIBRARY_LINK_C_FLAGS "")
 
+INCLUDE_DIRECTORIES(../ ../libubox ../ubus ../uci ../json-c-0.11 ../libnl/include)
+LINK_DIRECTORIES(../lib)
+
 IF(APPLE)
   INCLUDE_DIRECTORIES(/opt/local/include)
   LINK_DIRECTORIES(/opt/local/lib)
@@ -21,14 +24,14 @@ SET(SOURCES
 SET(LIBS
 	ubox ubus uci json-c blobmsg_json)
 
-IF (NOT DEFINED LIBNL_LIBS)
-  FIND_LIBRARY(libnl NAMES libnl-3 libnl nl-3 nl)
-  SET(LIBNL_LIBS ${libnl})
-ENDIF()
+#IF (NOT DEFINED LIBNL_LIBS)
+#  FIND_LIBRARY(libnl NAMES libnl-3 libnl nl-3 nl)
+#  SET(LIBNL_LIBS ${libnl})
+#ENDIF()
 
 IF("${CMAKE_SYSTEM_NAME}" MATCHES "Linux" AND NOT DUMMY_MODE)
 	SET(SOURCES ${SOURCES} system-linux.c)
-	SET(LIBS ${LIBS} ${LIBNL_LIBS})
+	SET(LIBS ${LIBS} -lnl) #${LIBNL_LIBS})
 ELSE()
 	ADD_DEFINITIONS(-DDUMMY_MODE=1)
 	SET(SOURCES ${SOURCES} system-dummy.c)

@@ -48,6 +48,10 @@
 #define RT_TABLE_PRELOCAL 128
 #endif
 
+#ifndef  IFLA_VLAN_PROTOCOL
+#define IFLA_VLAN_PROTOCOL      5
+#endif 
+
 #ifndef IFA_F_NOPREFIXROUTE
 #define IFA_F_NOPREFIXROUTE 0x200
 #endif
